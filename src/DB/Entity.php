@@ -1,22 +1,40 @@
 <?php
 
-namespace CodeExperts\DB;
+namespace Code\DB;
 
 use \PDO;
 
 abstract class Entity
 {
-  public function __construct (\PDO $conn)
+
+  private $conn;
+
+  public function __construct(\PDO $conn)
   {
       $this->conn = $conn;
   }
 
-  public function findALL()
+  public function findAll()
   {
-    return 'SELECT * FROM products'; 
+    $sql = 'SELECT * FROM products'; 
+
+    $get = $this->conn->query($sql);
+
+    return $get->fetchAll(fetch_style: PDO::FETCH_ASSOC);
   }
 
-  public function find(){
-    return 'SELECT *FROM products WHERE id= 10';
+  public function find(int $id)
+  {
+    $sql = 'SELECT * FROM products WHERE id = :id';
+    
+    $get = $this->conn->prepare($sql);
+    $get->bindValue(':id', $id, \PDO::PARAM_INT);
+    // OS VALORES DOS PARÂMETROS $get->bindValue(parameter:':id', $id, data_type:\PDO::PARAM_INT);
+    
+    $get->execute();
+
+    return $get->fetch(PDO::FETCH_ASSOC);
+    //$get->fetchAll(fetch_style: PDO::FETCH_ASSOC);
   }
+
 }
