@@ -17,7 +17,8 @@
 </div>
 
 <div class="col-md-12">
-  <?php foreach($this->products as $product):?>
+ 
+  <?php foreach($this->products as $product):?><!-- Cria um array -->
     <div class="col-md-4">
       <img src="http://via.placeholder.com/350x150?text=<?=$product['name'];?>" alt="" class="img-responsive">
       <h2><a href="<?=HOME;?>/product/<?=$product['id'];?>"><?=$product['name'];?></a></h2>
@@ -25,7 +26,8 @@
       <p><?=number_format($product['price'], 2, ',', '.');?></p>
       <!--                         decimals: 2, dec_point: ',', thousands_sep:'.');?></p> -->
     </div>
-  <?php endforeach;?>
+  <?php endforeach;?><!-- fim do array-->
+  
 </div>
 
 </div> <!-- /container -->

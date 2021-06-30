@@ -26,7 +26,7 @@ if(!class_exists($controller = "Code\Controller\\". ucfirst($controller).'Contro
 
 if(!method_exists($controller, $action)){
   $action = 'index';
-  $param = $url[1];
+  $param  = $url[1];
 }
 
 

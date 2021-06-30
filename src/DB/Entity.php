@@ -25,6 +25,7 @@ abstract class Entity
 
   public function find(int $id)
   {
+
     $sql = 'SELECT * FROM products WHERE id = :id';
     
     $get = $this->conn->prepare($sql);
